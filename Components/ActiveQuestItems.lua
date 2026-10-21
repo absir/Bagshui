@@ -87,6 +87,9 @@ function ActiveQuestItemManager:Update()
 
 	local questName, isHeader, objectiveText, itemType, itemName, numNeeded, numObtained
 
+	-- Remember the quest log selection so it can be restored after parsing.
+	local previousSelection = _G.GetQuestLogSelection()
+
 	for questNum = 1, _G.GetNumQuestLogEntries(), 1 do
 
 		-- Only need a couple pieces of information from GetQuestLogTitle.
@@ -124,6 +127,9 @@ function ActiveQuestItemManager:Update()
 			end
 		end
 	end
+
+	-- Restore the quest log selection.
+	_G.SelectQuestLogEntry(previousSelection)
 end
 
 
